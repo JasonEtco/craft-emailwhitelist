@@ -1,0 +1,16 @@
+{% import '_includes/forms' as forms %}
+
+{{ forms.editableTable({
+	label: "Allowed Emails"|t,
+	id: 'allowedEmails',
+	class: 'redactor',
+	name: 'allowedEmails',
+	errors: settings.getErrors('allowedEmails'),
+	cols: [
+		{
+			heading: 'Allowed Emails',
+			type: 'singleline'
+		}
+	],
+	rows: settings.allowedEmails
+}) }}
