@@ -1,6 +1,6 @@
 # Email Whitelist
 
-Prevents new users from signing up unless their email is from a specific domain. Specifically, if their email contains specific text.
+A plugin for [Craft CMS](https://craftcms.com/) that prevents new users from signing up unless their email is from a specific domain.
 
 ## Installation
 
