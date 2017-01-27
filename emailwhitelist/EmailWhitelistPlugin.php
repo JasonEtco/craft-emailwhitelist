@@ -59,11 +59,12 @@ class EmailWhitelistPlugin extends BasePlugin
 			if (craft()->request->isSiteRequest() && $isNewUser)
 			{
 				$email = $user->email;
+				$domain = explode('@', $email)[1];
 
 				$allowedEmails = craft()->plugins->getPlugin('EmailWhitelist')->getSettings()->allowedEmails;
 
 				foreach ($allowedEmails as $e) {
-						if (strpos($email, $e[0]) !== false) {
+						if ($domain === $e[0]) {
 								$event->performAction = true;
 								return true;
 						}
