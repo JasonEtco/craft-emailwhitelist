@@ -13,7 +13,7 @@ In the settings page for **Email Whitelist**, simply add a new row and type the 
 
 SCREENSHOT COMING SOON
 
-In a template, you can get the list of allowed emails:
+Do you also have client-side validation? Great! In a template, you can get the list of allowed emails to throw into a `<script>` tag:
 ```
 {% for email in craft.emailWhitelist.getAllowedEmails() %}
   {{ email[0] }}
