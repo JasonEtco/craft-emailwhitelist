@@ -5,7 +5,7 @@ class EmailWhitelistPlugin extends BasePlugin
 {
 	public function getName()
 	{
-		return Craft::t('Email Validator');
+		return Craft::t('Email Whitelist');
 	}
 
 	public function getVersion()
@@ -30,6 +30,16 @@ class EmailWhitelistPlugin extends BasePlugin
 		));
   }
 
+	public function getPluginUrl()
+	{
+			return 'https://github.com/JasonEtco/craft-emailwhitelist';
+	}
+
+	public function getDocumentationUrl()
+	{
+			return $this->getPluginUrl() . '/blob/master/README.md';
+	}
+
 	public function prepSettings($settings)
 	{
 
@@ -42,7 +52,8 @@ class EmailWhitelistPlugin extends BasePlugin
 			'allowedEmails' => array(
 				AttributeType::String,
 				'label' => 'Allowed Emails'
-			)
+			),
+			'errorMessage' => 'There was an error, sorry!'
 		);
 	}
 
@@ -62,6 +73,7 @@ class EmailWhitelistPlugin extends BasePlugin
 				$domain = explode('@', $email)[1];
 
 				$allowedEmails = craft()->plugins->getPlugin('EmailWhitelist')->getSettings()->allowedEmails;
+				$errorMessage = craft()->plugins->getPlugin('EmailWhitelist')->getSettings()->errorMessage;
 
 				foreach ($allowedEmails as $e) {
 						if ($domain === $e[0]) {
@@ -70,7 +82,7 @@ class EmailWhitelistPlugin extends BasePlugin
 						}
 				}
 
-				craft()->userSession->setFlash('allowedEmails', 'You need to use a Harvard Law School email.');
+				craft()->userSession->setFlash('allowedEmails', $errorMessage);
 				// Cancel user save
 				$event->performAction = false;
 				return false;

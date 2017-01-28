@@ -5,6 +5,6 @@ class EmailWhitelistVariable
 {
     public function getAllowedEmails()
 		{
-				return craft()->EmailWhitelist_getAllowedEmails->getAllowedEmails();
+				return craft()->emailWhitelist_getAllowedEmails->getAllowedEmails();
 		}
 }

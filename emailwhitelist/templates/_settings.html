@@ -1,9 +1,19 @@
 {% import '_includes/forms' as forms %}
 
+<div style="margin-bottom: 1em">
+	<h5>Error Message:</h5>
+	{{ forms.text({
+		label: "Error Message"|t,
+		id: 'errorMessage',
+		name: 'errorMessage',
+		errors: settings.getErrors('errorMessage'),
+		value: settings.errorMessage
+	}) }}
+</div>
+
 {{ forms.editableTable({
 	label: "Allowed Emails"|t,
 	id: 'allowedEmails',
-	class: 'redactor',
 	name: 'allowedEmails',
 	errors: settings.getErrors('allowedEmails'),
 	cols: [
