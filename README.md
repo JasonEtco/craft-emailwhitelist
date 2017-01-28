@@ -11,7 +11,7 @@ A plugin for [Craft CMS](https://craftcms.com/) that prevents new users from sig
 
 In the settings page for **Email Whitelist**, simply add a new row and type the text that any new user's email must have. The plugin will check each item in the list.
 
-SCREENSHOT COMING SOON
+![Screenshot of EmailWhitelist](screenshot.png)
 
 Do you also have client-side validation? Great! In a template, you can get the list of allowed emails to throw into a `<script>` tag:
 ```
@@ -32,3 +32,7 @@ That's all there is to it!
 ## Feedback?
 
 Please submit an issue or reach out to me on Twitter: [@jasonetco](https://twitter.com/jasonetco)
+
+## License
+
+MIT © [Jason Etcovitch](https://jasonet.co)
