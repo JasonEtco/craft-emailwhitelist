@@ -3,8 +3,8 @@ namespace Craft;
 
 class EmailWhitelistVariable
 {
-    public function getAllowedEmails()
+    public function getEmails()
 		{
-				return craft()->emailWhitelist_getAllowedEmails->getAllowedEmails();
+				return craft()->emailWhitelist_getEmails->getEmails();
 		}
 }

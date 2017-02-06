@@ -49,10 +49,8 @@ class EmailWhitelistPlugin extends BasePlugin
 	protected function defineSettings()
 	{
 		return array(
-			'allowedEmails' => array(
-				AttributeType::String,
-				'label' => 'Allowed Emails'
-			),
+			'emails' => array(AttributeType::String, 'label' => 'Emails'),
+			'blacklistMode' => array(AttributeType::Bool, 'default' => true),
 			'errorMessage' => 'There was an error, sorry!'
 		);
 	}
@@ -71,21 +69,34 @@ class EmailWhitelistPlugin extends BasePlugin
 			{
 				$email = $user->email;
 				$domain = explode('@', $email)[1];
+				
+				$settings = craft()->plugins->getPlugin('EmailWhitelist')->getSettings();
 
-				$allowedEmails = craft()->plugins->getPlugin('EmailWhitelist')->getSettings()->allowedEmails;
-				$errorMessage = craft()->plugins->getPlugin('EmailWhitelist')->getSettings()->errorMessage;
+				$emails = $settings->emails;
+				$blacklistMode = $settings->blacklistMode;
+				$errorMessage = $settings->errorMessage;
 
-				foreach ($allowedEmails as $e) {
+				if ($blacklistMode) {
+					foreach ($emails as $e) {
 						if ($domain === $e[0]) {
-								$event->performAction = true;
-								return true;
+							craft()->userSession->setFlash('emailwhitelist', $errorMessage);
+							$event->performAction = false;
+							return false;
 						}
+							$event->performAction = true;
+							return true;
+					}
+				} else {
+					foreach ($emails as $e) {
+						if ($domain === $e[0]) {
+							$event->performAction = true;
+							return true;
+						}
+						craft()->userSession->setFlash('emailwhitelist', $errorMessage);
+						$event->performAction = false;
+						return false;
+					}
 				}
-
-				craft()->userSession->setFlash('allowedEmails', $errorMessage);
-				// Cancel user save
-				$event->performAction = false;
-				return false;
 			}
 		});
 	}

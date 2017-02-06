@@ -11,17 +11,29 @@
 	}) }}
 </div>
 
+<div style="margin-bottom: 3em">
+	<h5 id="toggleLabel">Blacklist Mode</h5>
+	{{ forms.lightswitch({
+		label: "Blacklist Mode"|t,
+		id: 'blacklistMode',
+		name: 'blacklistMode',
+		labelId: 'toggleLabel',
+		on: settings.blacklistMode
+	}) }}
+	<p style="color: #8f98a3;">Enabling this will allow any emails <b>EXCEPT</b> those in the list.</p>
+</div>
+
 {{ forms.editableTable({
-	label: "Allowed Emails"|t,
-	id: 'allowedEmails',
-	name: 'allowedEmails',
+	label: "List of Emails"|t,
+	id: 'emails',
+	name: 'emails',
 	addRowLabel: 'Add an email',
-	errors: settings.getErrors('allowedEmails'),
+	errors: settings.getErrors('emails'),
 	cols: [
 		{
-			heading: 'Allowed Emails',
+			heading: 'Emails',
 			type: 'singleline'
 		}
 	],
-	rows: settings.allowedEmails
+	rows: settings.emails
 }) }}
