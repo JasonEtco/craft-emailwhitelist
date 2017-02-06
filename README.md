@@ -32,9 +32,8 @@ On error, the plugin sets a flash message which you can see in a template:
 That's all there is to it!
 
 ## Changelog
-
-1.1.0 : Add Blacklist mode, with a toggle on the plugin's Settings page, changed variable names
-1.0.0 : Initial Version
+* 1.1.0 : Add Blacklist mode, with a toggle on the plugin's Settings page, changed variable names
+* 1.0.0 : Initial Version
 
 ## Feedback?
 
